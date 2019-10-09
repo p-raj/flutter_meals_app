@@ -8,6 +8,7 @@ enum Complexity {
 
 enum Affordability {
   Affordable,
+  Pricey,
   Luxurious
 }
 
