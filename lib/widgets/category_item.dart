@@ -9,13 +9,13 @@ class CategoryItem extends StatelessWidget {
 
   CategoryItem(this.id, this.title, this.color);
 
-  void selectCategory(BuildContext bc) {
-    Navigator.of(bc).pushNamed(
+  void selectCategory(BuildContext ctx) {
+    Navigator.of(ctx).pushNamed(
       CategoryMealsScreen.routeName,
       arguments: {
         'id': id,
-        'title': title
-      }
+        'title': title,
+      },
     );
   }
 
@@ -23,15 +23,25 @@ class CategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => selectCategory(context),
+      splashColor: Theme.of(context).primaryColor,
+      borderRadius: BorderRadius.circular(15),
       child: Container(
         padding: const EdgeInsets.all(15),
-        child: Text(title),
+        child: Text(
+          title,
+          style: Theme.of(context).textTheme.title,
+        ),
         decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
+          gradient: LinearGradient(
+            colors: [
               color.withOpacity(0.7),
-              color.withOpacity(1),
-            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-            borderRadius: BorderRadius.circular(15)),
+              color,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          borderRadius: BorderRadius.circular(15),
+        ),
       ),
     );
   }
